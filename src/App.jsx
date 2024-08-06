@@ -1,8 +1,12 @@
-function App () {
-    return(
-        <header>
-            <h1>Hello world</h1>
-        </header>
-    )
+import Header from "./components/Header";
+import Articles from "./components/Articles";
+function App() {
+  return (
+    <>
+      <Header />
+
+      <Articles />
+    </>
+  );
 }
-export default App
+export default App;
