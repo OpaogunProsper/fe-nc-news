@@ -3,12 +3,17 @@ import { getArticles } from "../../api";
 
 function Articles() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getArticles().then((articles) => {
       setArticles(articles);
+      setIsLoading(false);
     });
   }, []);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div>
       {articles.map((article) => {
