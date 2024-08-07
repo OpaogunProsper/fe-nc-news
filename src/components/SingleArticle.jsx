@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../api";
+import { getArticleById } from "../../api";
 import { useEffect, useState } from "react";
+import CommentsList from "./CommentsList";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(false)
     getArticleById(article_id).then((article) => {
       setArticle(article);
       setIsLoading(false);
@@ -26,6 +28,7 @@ function SingleArticle() {
           <p>Category: {article.topic}</p>
           <img src={article.article_img_url} alt={article.title} />
         </div>
+        <CommentsList />
       </div>
     );
   }
