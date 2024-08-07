@@ -19,11 +19,8 @@ function Articles() {
     <div>
       {articles.map((article) => {
         return (
-          <>
-            <Link
-              key={article.article_id}
-              to={`articles/${article.article_id}`}
-            >
+          <li key={article.article_id}>
+            <Link to={`articles/${article.article_id}`}>
               <h2>{article.title}</h2>
             </Link>
             <p>author: {article.author}</p>
@@ -34,7 +31,7 @@ function Articles() {
             </p>
 
             <p>{new Date(article.created_at).toLocaleString()}</p>
-          </>
+          </li>
         );
       })}
     </div>
