@@ -5,8 +5,12 @@ function Header() {
     <>
       <header>
         <h1>NC news</h1>
-        <button>Account</button>
       </header>
+      <nav>
+        <Link to='/'>Home</Link>
+        
+        <button>Account</button>
+      </nav>
     </>
   );
 }
