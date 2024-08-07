@@ -1,11 +1,15 @@
 import Header from "./components/Header";
 import Articles from "./components/Articles";
+import { Route, Routes } from "react-router-dom";
+import SingleArticle from "./SingleArticle";
 function App() {
   return (
     <>
       <Header />
-
-      <Articles />
+      <Routes>
+        <Route path="/" element={<Articles />} />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
+      </Routes>
     </>
   );
 }

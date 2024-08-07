@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://nc-news-676h.onrender.com/api/",
+  baseURL: "https://nc-news-676h.onrender.com/api",
 });
 
 function getArticles() {
@@ -9,4 +9,9 @@ function getArticles() {
     return data.articles;
   });
 }
-export { getArticles };
+function getArticleById(article_id) {
+  return api.get(`/articles/${article_id}`).then(({ data }) => {
+    return data.article;
+  });
+}
+export { getArticles, getArticleById };
