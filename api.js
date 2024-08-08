@@ -20,4 +20,7 @@ function getComments (article_id) {
     return data.comments
   })
 }
-export { getArticles, getArticleById, getComments};
+function updateArticleVotes(article_id, inc_votes){
+  return api.patch(`/articles/${article_id}`,{inc_votes})
+}
+export { getArticles, getArticleById, getComments, updateArticleVotes};

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { getArticleById } from "../../api";
 import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
+import Votes from "./Votes";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -27,6 +28,7 @@ function SingleArticle() {
           <p>{new Date(article.created_at).toLocaleString()}</p>
           <p>Category: {article.topic}</p>
           <img src={article.article_img_url} alt={article.title} />
+          <Votes article={article} />
         </div>
         <CommentsList />
       </div>
