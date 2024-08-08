@@ -6,32 +6,40 @@ function Votes({ article }) {
   const [votesCount, setVotesCount] = useState(0);
   const { article_id } = useParams();
   const [error, setError] = useState("");
+  const [hasUpvoted, setHasUpvoted] = useState(false);
+  const [hasDownvoted, setHasDownvoted] = useState(false);
   function handleUpVote() {
-    setVotesCount((currVote) => {
-      return currVote + 1;
-    });
-    let increment = 1;
-    updateArticleVotes(article_id, increment).catch((err) => {
+    if (!hasUpvoted && !hasDownvoted) {
       setVotesCount((currVote) => {
-        return currVote - 1;
+        return currVote + 1;
       });
-      setError("Try again");
-    });
+      setHasUpvoted(true);
+      let increment = 1;
+      updateArticleVotes(article_id, increment).catch((err) => {
+        setVotesCount((currVote) => {
+          return currVote - 1;
+        });
+        setError("Try again");
+        setHasUpvoted(false);
+      });
+    }
   }
 
   function handleDownVote() {
-    setVotesCount((currVote) => {
-      return currVote - 1;
-    });
-    let increment = -1;
-    updateArticleVotes(article_id, increment)
-      .then()
-      .catch((err) => {
+    if (!hasUpvoted && !hasDownvoted) {
+      setVotesCount((currVote) => {
+        return currVote - 1;
+      });
+      setHasDownvoted(true);
+      let increment = -1;
+      updateArticleVotes(article_id, increment).catch((err) => {
         setVotesCount((currVote) => {
           return currVote + 1;
         });
         setError("Try again");
+        setHasDownvoted(false);
       });
+    }
   }
   if (error) {
     return <p>{error}</p>;
