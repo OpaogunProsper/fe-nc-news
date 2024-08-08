@@ -18,6 +18,7 @@ function CommentsList() {
   } else {
     return (
       <ul className="comments-list">
+        <h2 className="comment-header">Comments</h2>
         {comments.map((comment) => (
           <SingleComment
             setComments={setComments}
