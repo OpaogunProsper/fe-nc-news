@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Articles from "./components/Articles";
 import { Route, Routes } from "react-router-dom";
 import SingleArticle from "./components/SingleArticle";
+import '../src/App.css'
 function App() {
   return (
     <>

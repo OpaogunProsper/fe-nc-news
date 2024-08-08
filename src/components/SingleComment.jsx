@@ -1,9 +1,13 @@
 function SingleComment({ comment }) {
   return (
-    <div>
-      <strong>{comment.author}</strong>
-      <p>{comment.body}</p>
-      <p>{comment.votes}</p>
+    <div className="comment-info">
+      <p className="comment-author">{comment.author}</p>
+      <p>
+        {comment.votes} votes • {new Date(comment.created_at).toLocaleString()}
+      </p>
+      <div className="comment-body">
+        <p>{comment.body}</p>
+      </div>
     </div>
   );
 }
