@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getComments } from "../../api";
 import SingleComment from "./SingleComment";
+import CommentForm from "./CommentForm";
 
 function CommentsList() {
   const { article_id } = useParams();
@@ -18,7 +19,9 @@ function CommentsList() {
   } else {
     return (
       <ul className="comments-list">
-        <h2 className="comment-header">Comments</h2>
+        <h3 className="comment-header">Comments</h3>
+        <CommentForm setComments={setComments} article_id={article_id} />
+
         {comments.map((comment) => (
           <SingleComment
             setComments={setComments}
