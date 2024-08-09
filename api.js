@@ -14,13 +14,28 @@ function getArticleById(article_id) {
     return data.article;
   });
 }
-function getComments (article_id) {
-  return api.get(`/articles/${article_id}/comments`)
-  .then(({ data }) =>{
-    return data.comments
-  })
+function getComments(article_id) {
+  return api.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
 }
-function updateArticleVotes(article_id, inc_votes){
-  return api.patch(`/articles/${article_id}`,{inc_votes})
+function updateArticleVotes(article_id, inc_votes) {
+  return api.patch(`/articles/${article_id}`, { inc_votes });
 }
-export { getArticles, getArticleById, getComments, updateArticleVotes};
+function postComment(article_id, comment) {
+  return api
+    .post(`/articles/${article_id}/comments`, {
+      username: comment.username,
+      body: comment.body,
+    })
+    .then((response) => {
+      return response.data;
+    });
+}
+export {
+  getArticles,
+  getArticleById,
+  getComments,
+  updateArticleVotes,
+  postComment,
+};
