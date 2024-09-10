@@ -3,6 +3,7 @@ import { getArticleById } from "../../api";
 import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
 import Votes from "./Votes";
+import { Box, Image, Text } from "@chakra-ui/react";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -20,18 +21,24 @@ function SingleArticle() {
     return <p>Loading...</p>;
   } else {
     return (
-      <div>
+      <Box className="bg-white shadow-md rounded-lg overflow-hidden">
         <div>
-          <h2>{article.title}</h2>
+          <Image
+            src={article.article_img_url}
+            alt={article.title}
+            className="w-full h-auto object-cover rounded"
+          />
+          <Text className="w-full h-48 object-cover">{article.title}</Text>
           <p> Author: {article.author}</p>
-          <p>{article.body}</p>
+          <Text className="text-gray-600 mt-2">
+            {article.body}
+          </Text>
           <p>{new Date(article.created_at).toLocaleString()}</p>
           <p>Category: {article.topic}</p>
-          <img src={article.article_img_url} alt={article.title} />
           <Votes article={article} />
         </div>
         <CommentsList />
-      </div>
+      </Box>
     );
   }
 }
