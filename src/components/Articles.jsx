@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { getArticles } from "../../api";
 import { Link } from "react-router-dom";
-import { Box, Text, SimpleGrid, Image, Button } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, Image, Button, Heading } from "@chakra-ui/react";
 import Loading from "./Loading";
 import moment from "moment";
 import NewsSlide from "./NewsSlide";
+
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,34 +22,39 @@ function Articles() {
   return (
     <>
       <NewsSlide />
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
+      <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={10}>
         {articles.map((article) => {
           return (
             <Box
+              borderWidth="1px"
+              borderRadius="md"
+              boxShadow="md"
+              overflow="hidden"
+              ml="4"
+              mr="4"
               key={article.article_id}
-              className="p-4 bg-white rounded-lg shadow"
             >
-              <Text fontSize="xl" fontWeight="semibold" className="mt-2">
-                {article.title}
-              </Text>
-
-              <p>author: {article.author}</p>
               <Image
-                maxW={{ base: "100%", sm: "400px" }}
+                w="100%"
+                h="350px"
                 src={article.article_img_url}
                 alt={article.title}
-                className="w-full h-auto object-cover rounded"
+                objectFit="cover"
               />
-              <Text className="mt-2 text-gray-600">
-                Comments: {article.comment_count}
-              </Text>
-              <Text className="mt-2 text-gray-600">
-                {article.topic} • {moment(article.created_at).fromNow()}
-              </Text>
+              <Box p="4">
+                <Heading fontSize="2xl" fontWeight="semibold" className="mt-2">
+                  {article.title}
+                </Heading>
+                <Text fontSize="medium" color="black">
+                  {article.author} •{" "}
+                  {moment(article.created_at).format("DD/MM/YYYY")}
+                </Text>
 
-              <Button>
-                <Link to={`articles/${article.article_id}`}>Read more</Link>
-              </Button>
+                <Button mt="4" variant="ghost" colorScheme="red">
+                  <Link to={`articles/${article.article_id}`}>Read more</Link>
+                </Button>
+                
+              </Box>
             </Box>
           );
         })}
