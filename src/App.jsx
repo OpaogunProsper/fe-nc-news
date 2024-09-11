@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <NewsSlide />
       <Routes>
         <Route path="/" element={<Articles />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
