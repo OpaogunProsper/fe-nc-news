@@ -4,39 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
+import moment from "moment";
 
-const newsData = [
-  {
-    title: "Kids Discuss Coding in Viral Meet Call",
-    category: "Coding",
-    time: "3 hours ago",
-    imageUrl:
-      "https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg?w=700&h=700",
-  },
-  {
-    title: "Cristiano Ronaldo Breaks Goal Record in UEFA",
-    category: "Football",
-    time: "1 hour ago",
-    imageUrl:
-      "https://images.pexels.com/photos/338745/pexels-photo-338745.jpeg?w=700&h=700",
-  },
-  {
-    title: "AI Treaty Signed by Global Leaders",
-    category: "Technology",
-    time: "5 hours ago",
-    imageUrl:
-      "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?w=700&h=700",
-  },
-  {
-    title: "UK Parliament Debates Climate Policy",
-    category: "Politics",
-    time: "2 hours ago",
-    imageUrl:
-      "https://images.pexels.com/photos/27776937/pexels-photo-27776937/free-photo-of-a-mountain-lake-with-a-blue-sky-and-green-grass.jpeg",
-  },
-];
-
-const NewsSlide = () => {
+const NewsSlide = ({articles}) => {
+  const articleData = articles.slice(11,15)
   return (
     <Box
       w="100%"
@@ -54,7 +26,7 @@ const NewsSlide = () => {
         slidesPerView={1}
         loop={true}
       >
-        {newsData.map((news, index) => (
+        {articleData.map((article, index) => (
           <SwiperSlide key={index}>
             <Box
               position="relative"
@@ -64,13 +36,16 @@ const NewsSlide = () => {
               borderRadius="lg"
               boxShadow="lg"
             >
-              <Image
-                src={news.imageUrl}
-                alt={news.title}
-                width="100%"
-                height="100%"
-                objectFit="cover"
-              />
+              <Link to={`articles/${article.article_id}`}>
+                <Image
+                  src={article.article_img_url}
+                  alt={article.title}
+                  width="100%"
+                  height="100%"
+                  objectFit="cover"
+                />
+              </Link>
+
               <Box
                 position="absolute"
                 bottom="0"
@@ -81,10 +56,10 @@ const NewsSlide = () => {
                 color="white"
               >
                 <Text fontSize="xl" color={"white"} fontWeight="bold" mb="2">
-                  {news.title}
+                  {article.title}
                 </Text>
                 <Text color={"white"} fontSize="sm">
-                  {news.category} - {news.time}
+                  {article.topic} • {moment(article.created_at).fromNow()}
                 </Text>
               </Box>
             </Box>

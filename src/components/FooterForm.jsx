@@ -9,7 +9,7 @@ import React from "react";
 
 const FooterForm = () => {
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     alert("Thanks for subscribing!");
   };
 
@@ -20,9 +20,21 @@ const FooterForm = () => {
           <FormLabel fontWeight={"bold"} fontSize={"medium"} color="white">
             Email address
           </FormLabel>
-          <Input placeholder="Enter your email address" variant="filled" htmlSize={70} width="auto" type="email" />
+          <Input
+            placeholder="Enter your email address"
+            variant="filled"
+            htmlSize={70}
+            width="auto"
+            type="email"
+          />
         </FormControl>
-        <Button colorScheme="red" type="submit">
+        <Button
+          colorScheme="red"
+          color="white"
+          bg={"red.700"}
+          _hover={{ bg: "red.800" }}
+          type="submit"
+        >
           Subscribe
         </Button>
       </VStack>
