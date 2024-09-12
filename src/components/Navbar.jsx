@@ -1,18 +1,13 @@
-import {
-  Box,
-  Text,
-  Flex,
-  Button,
-  HStack,
-  Divider,
-  Center,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Text, Flex, Button, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <Box as="header" className="sticky top-0 z-50 shadow-md" bg="black">
+    <Box
+      as="header"
+      className="sticky top-0 z-50 shadow-md"
+      bgGradient="linear(to-l, #454545, #000000)"
+    >
       <Flex justify="space-between" align="center" p={4}>
         <Text fontSize="2xl" fontWeight="bold" color={"white"}>
           NC NEWS
@@ -22,7 +17,6 @@ function Navbar() {
           align="center"
           px={{ base: 4, md: 6 }}
           py={{ base: 2, md: 4 }}
-          bg="black"
         >
           <Box>
             <Link to="/">
@@ -39,7 +33,14 @@ function Navbar() {
             </Link>
           </Box>
           <Box>
-            <Button colorScheme="red">Account</Button>
+            <Button
+              colorScheme="red"
+              color="white"
+              bg="red.700"
+              _hover={{ bg: "red.800" }}
+            >
+              Account
+            </Button>
           </Box>
         </HStack>
       </Flex>

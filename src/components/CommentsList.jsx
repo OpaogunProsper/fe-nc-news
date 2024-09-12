@@ -26,7 +26,7 @@ function CommentsList() {
             Comments
           </Heading>
           <Text as="sup" fontSize="sm">
-            2
+            ({comments.length})
           </Text>
         </HStack>
         <CommentForm setComments={setComments} article_id={article_id} />

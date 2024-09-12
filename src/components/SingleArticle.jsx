@@ -22,26 +22,33 @@ function SingleArticle() {
     return <Loading />;
   } else {
     return (
-      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+      <Grid templateColumns={{ base: "1fr", md: "repeat(5, 1fr)" }} gap={4}>
         <GridItem
-          margin="50px"
+          margin={{ base: "10px", md: "50px" }}
           borderWidth="1px"
           borderRadius="md"
           boxShadow="md"
           overflow="hidden"
           rowSpan={4}
-          colSpan={3}
+          colSpan={{ base: 1, md: 3 }}
         >
           <Image
             src={article.article_img_url}
             alt={article.title}
             objectFit="cover"
-            height="500px"
+            height={{ base: "300px", md: "500px" }}
             width="100%"
           />
         </GridItem>
 
-        <GridItem margin="50px" rowSpan={4} colSpan={2} padding={4}>
+        <GridItem
+          margin={{ base: "10px", md: "50px" }}
+          rowSpan={4}
+          colSpan={{ base: 1, sm: 1, md: 2 }}
+          padding={4}
+          maxHeight={{ base: "300px", sm: "400px", md: "500px" }}
+          overflowY={"auto"}
+        >
           <Heading mb={2} size="lg">
             {article.title}
           </Heading>
@@ -54,7 +61,12 @@ function SingleArticle() {
           <Votes article={article} />
         </GridItem>
 
-        <GridItem margin="50px" rowSpan={5} colSpan={3} padding={4}>
+        <GridItem
+          margin={{ base: "10px", md: "50px" }}
+          rowSpan={5}
+          colSpan={{ base: 1, md: 3 }}
+          padding={4}
+        >
           <CommentsList />
         </GridItem>
       </Grid>
