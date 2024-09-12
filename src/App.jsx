@@ -4,7 +4,6 @@ import SingleArticle from "./components/SingleArticle";
 import "../src/App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import NewsSlide from "./components/NewsSlide";
 
 function App() {
   return (

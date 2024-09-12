@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getComments } from "../../api";
 import SingleComment from "./SingleComment";
 import CommentForm from "./CommentForm";
+import Loading from "./Loading";
+import { Heading, HStack, Text } from "@chakra-ui/react";
 
 function CommentsList() {
   const { article_id } = useParams();
@@ -15,11 +17,18 @@ function CommentsList() {
     });
   }, [article_id]);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   } else {
     return (
-      <ul className="comments-list">
-        <h3 className="comment-header">Comments</h3>
+      <>
+        <HStack>
+          <Heading size="md" mb={2}>
+            Comments
+          </Heading>
+          <Text as="sup" fontSize="sm">
+            2
+          </Text>
+        </HStack>
         <CommentForm setComments={setComments} article_id={article_id} />
 
         {comments.map((comment) => (
@@ -29,7 +38,7 @@ function CommentsList() {
             key={comment.comment_id}
           />
         ))}
-      </ul>
+      </>
     );
   }
 }

@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateArticleVotes } from "../../api";
+import { HStack, Icon, IconButton, Text } from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faThumbsDown,
+  faThumbsUp,
+  faVoteYea,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Votes({ article }) {
   const [votesCount, setVotesCount] = useState(0);
@@ -47,9 +54,27 @@ function Votes({ article }) {
 
   return (
     <div>
-      <div>Votes: {article.votes + votesCount}</div>
-      <button onClick={handleUpVote}>UpVote</button>
-      <button onClick={handleDownVote}>downVote</button>
+      <HStack>
+        <FontAwesomeIcon icon={faVoteYea} color="black" />
+        <Text color={"black"}>{article.votes + votesCount}</Text>
+      </HStack>
+      <HStack mt={12} spacing={5}>
+        <IconButton
+          icon={<FontAwesomeIcon icon={faThumbsUp} />}
+          onClick={handleUpVote}
+          aria-label="Upvote"
+          variant="solid"
+          colorScheme="green"
+          mr={2}
+        />
+        <IconButton
+          icon={<FontAwesomeIcon icon={faThumbsDown} />}
+          onClick={handleDownVote}
+          aria-label="Downvote"
+          variant="solid"
+          colorScheme="red"
+        />
+      </HStack>
     </div>
   );
 }

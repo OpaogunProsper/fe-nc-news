@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { postComment } from "../../api";
+import { Button, Textarea } from "@chakra-ui/react";
 function CommentForm({ article_id, setComments }) {
   const { user } = useContext(UserContext);
   const [userInfo] = user;
@@ -35,17 +36,30 @@ function CommentForm({ article_id, setComments }) {
         setIsPosting(false);
       });
   }
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={newComment}
-          onChange={handleChange}
-          placeholder="Write a comment..."
-        ></textarea>
-        <button type="submit">{isPosting ? "Posting..." : "Post"}</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <Textarea
+        value={newComment}
+        onChange={handleChange}
+        placeholder="Write a comment..."
+        w="full"
+        h="150px"
+        focusBorderColor="blue.400"
+        className="hover:bg-blue-50"
+      />
+
+      <Button
+        type="submit"
+        isLoading={isPosting}
+        loadingText="Posting..."
+        colorScheme="blue"
+        mt={4}
+        mb={4}
+      >
+        Post
+      </Button>
+    </form>
   );
 }
 export default CommentForm;

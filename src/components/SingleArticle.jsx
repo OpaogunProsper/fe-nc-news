@@ -3,14 +3,15 @@ import { getArticleById } from "../../api";
 import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
 import Votes from "./Votes";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import Loading from "./Loading";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setIsLoading(false)
+    setIsLoading(false);
     getArticleById(article_id).then((article) => {
       setArticle(article);
       setIsLoading(false);
@@ -18,27 +19,45 @@ function SingleArticle() {
   }, [article_id]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   } else {
     return (
-      <Box className="bg-white shadow-md rounded-lg overflow-hidden">
-        <div>
+      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+        <GridItem
+          margin="50px"
+          borderWidth="1px"
+          borderRadius="md"
+          boxShadow="md"
+          overflow="hidden"
+          rowSpan={4}
+          colSpan={3}
+        >
           <Image
             src={article.article_img_url}
             alt={article.title}
-            className="w-full h-auto object-cover rounded"
+            objectFit="cover"
+            height="500px"
+            width="100%"
           />
-          <Text className="w-full h-48 object-cover">{article.title}</Text>
-          <p> Author: {article.author}</p>
-          <Text className="text-gray-600 mt-2">
+        </GridItem>
+
+        <GridItem margin="50px" rowSpan={4} colSpan={2} padding={4}>
+          <Heading mb={2} size="lg">
+            {article.title}
+          </Heading>
+          <Text>Category: {article.topic}</Text>
+          <br />
+          <Text mb={4} color={"black"} fontSize="xl">
             {article.body}
           </Text>
-          <p>{new Date(article.created_at).toLocaleString()}</p>
-          <p>Category: {article.topic}</p>
+
           <Votes article={article} />
-        </div>
-        <CommentsList />
-      </Box>
+        </GridItem>
+
+        <GridItem margin="50px" rowSpan={5} colSpan={3} padding={4}>
+          <CommentsList />
+        </GridItem>
+      </Grid>
     );
   }
 }
