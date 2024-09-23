@@ -1,16 +1,26 @@
 <h1>NC News - Frontend :notebook_with_decorative_cover:</h1>
-
+<a href="https://ncatnews.netlify.app/">
+Nc News</a>
 <h2>Overview</h2>
-<article>This is the front end of the NC news project, a web-based application that provides users with the latest news articles on topics such as coding, cooking, and football. The front is built using React.js and styled with Tailwind CSS and Chakra UI, which interacts with a RESTful backend API to fetch and display news articles.</article>
+<article>NC news is a web-based application that provides users with the latest news articles on topics such as coding, cooking, and football. The front end is built using React.js and styled with Tailwind CSS and Chakra UI, which interacts with a RESTful backend API to fetch and display news articles.</article>
 
 <h3>Features</h3>
 <ul>
-<li>Responsive Design: Fully responsive and optimized for mobile, tablet and desktop devices</li> 
+<li> Responsive Design: Fully responsive and optimized for mobile, tablet and desktop devices</li> 
 <li> News Categories: Browse new articles by category (e.g Coding, Football, Cooking) </li>
-<li> Search Functionality: Search articles by keywords </li>
+<li> Posting Articles: Create an article of your own </li>
+ <li>Categorize and Filter Articles: Filter articles based on the date, time created,  votes, and comments</li>
 </ul>
 
- <h4>Technologies Used</h4>
+<h3>Back-End Repo</h3>
+<a href="https://github.com/OpaogunProsper/nc-news-backend">Repo</a>
+<h4>Minimum Requirements</h4>
+<ul>
+ <li>Node.js version: >= 16.0.0</li>
+ <li>Package Manager: npm</li>
+</ul>
+
+ <h3>Technologies Used</h3>
  <ul>
    <li>React.js</li>
    <li> Axios </li>
@@ -46,5 +56,6 @@
 <li>Open a pull request</li>
 </ol>
 
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
 
 
