@@ -32,10 +32,14 @@ function postComment(article_id, comment) {
       return response.data;
     });
 }
+function deleteComment(comment_id){
+ return api.delete(`/comments/${comment_id}`)
+}
 export {
   getArticles,
   getArticleById,
   getComments,
   updateArticleVotes,
   postComment,
+  deleteComment
 };
