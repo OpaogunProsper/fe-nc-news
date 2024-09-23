@@ -56,7 +56,11 @@ function Votes({ article }) {
     <div>
       <HStack>
         <FontAwesomeIcon icon={faVoteYea} color="black" />
-        <Text color={"black"}>{article.votes + votesCount}</Text>
+        <Text color={"black"}>
+          {
+          isNaN(article.votes + votesCount) ? "0" : article.votes + votesCount
+          }
+        </Text>
       </HStack>
       <HStack mt={12} spacing={5}>
         <IconButton

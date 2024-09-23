@@ -35,6 +35,7 @@ function CommentsList() {
           <SingleComment
             setComments={setComments}
             comment={comment}
+            comment_id={comment.comment_id}
             key={comment.comment_id}
           />
         ))}
