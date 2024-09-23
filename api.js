@@ -4,10 +4,17 @@ const api = axios.create({
   baseURL: "https://nc-news-676h.onrender.com/api",
 });
 
-function getArticles() {
-  return api.get(`/articles`).then(({ data }) => {
-    return data.articles;
-  });
+function getArticles(sort_by = "votes", order = "asc") {
+  return api
+    .get(`/articles`, {
+      params: {
+        sort_by,
+        order,
+      },
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
 }
 function getArticleById(article_id) {
   return api.get(`/articles/${article_id}`).then(({ data }) => {
@@ -32,8 +39,8 @@ function postComment(article_id, comment) {
       return response.data;
     });
 }
-function deleteComment(comment_id){
- return api.delete(`/comments/${comment_id}`)
+function deleteComment(comment_id) {
+  return api.delete(`/comments/${comment_id}`);
 }
 export {
   getArticles,
@@ -41,5 +48,5 @@ export {
   getComments,
   updateArticleVotes,
   postComment,
-  deleteComment
+  deleteComment,
 };
