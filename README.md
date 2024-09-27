@@ -1,10 +1,8 @@
 <h1>NC News - Frontend :notebook_with_decorative_cover:</h1>
 
-<a href="https://ncatnews.netlify.app/">
+<a href="https://ncatnews.netlify.app/">NC News Deployed Version</a>
 
-NC News Deployed Version</a>
 
-<p>Click the link above to view! </p>
 
 <h2>Overview</h2>
 
@@ -14,8 +12,8 @@ NC News Deployed Version</a>
 
 <ul>
 <li> Responsive Design: Fully responsive and optimized for mobile, tablet and desktop devices</li> 
-<li> News Categories: Browse new articles by category (e.g Coding, Football, Cooking) - Coming Soon! </li>
-<li> Posting Comments: Express yourself through posting comments on your preferred article </li>
+<li> News Categories: Browse new articles by category (e.g. Coding, Football, Cooking) - Coming Soon! </li>
+<li> Posting Comments: Express yourself by posting comments on your preferred article </li>
  <li>Categorize and Filter Articles: Filter articles based on the date, time created,  votes and comments</li>
 </ul>
 
