@@ -1,26 +1,34 @@
 <h1>NC News - Frontend :notebook_with_decorative_cover:</h1>
-<a href="https://ncatnews.netlify.app/">
-Nc News</a>
-<h2>Overview</h2>
-<article>NC news is a web-based application that provides users with the latest news articles on topics such as coding, cooking, and football. The front end is built using React.js and styled with Tailwind CSS and Chakra UI, which interacts with a RESTful backend API to fetch and display news articles.</article>
 
-<h3>Features</h3>
+<a href="https://ncatnews.netlify.app/">
+
+NC News Deployed Version</a>
+
+<p>Click the link above to view! </p>
+
+<h2>Overview</h2>
+
+<p>NC news is a web-based application that provides users with the latest news articles on topics such as coding, cooking, and football. The front end is built using React.js and styled with Tailwind CSS and Chakra UI, which interacts with a RESTful backend API to fetch and display news articles.</p>
+
+<h2>Features</h2>
+
 <ul>
 <li> Responsive Design: Fully responsive and optimized for mobile, tablet and desktop devices</li> 
-<li> News Categories: Browse new articles by category (e.g Coding, Football, Cooking) </li>
-<li> Posting Articles: Create an article of your own </li>
- <li>Categorize and Filter Articles: Filter articles based on the date, time created,  votes, and comments</li>
+<li> News Categories: Browse new articles by category (e.g Coding, Football, Cooking) - Coming Soon! </li>
+<li> Posting Comments: Express yourself through posting comments on your preferred article </li>
+ <li>Categorize and Filter Articles: Filter articles based on the date, time created,  votes and comments</li>
 </ul>
 
-<h3>Back-End Repo</h3>
-<a href="https://github.com/OpaogunProsper/nc-news-backend">Repo</a>
-<h4>Minimum Requirements</h4>
+<h2>Back-End Repo</h2>
+<a href="https://github.com/OpaogunProsper/nc-news-backend">GitHub Repo</a>
+
+<h2>Minimum Requirements</h2>
 <ul>
  <li>Node.js version: >= 16.0.0</li>
  <li>Package Manager: npm</li>
 </ul>
 
- <h3>Technologies Used</h3>
+ <h2>Technologies Used</h2>
  <ul>
    <li>React.js</li>
    <li> Axios </li>
@@ -28,15 +36,15 @@ Nc News</a>
    <li> CSS </li>
 </ul>
 
- <h4> Installation and Setup </h4>
-  <h5>Ensure you have the following installed:</h5>
+ <h2> Installation and Setup </h2>
+  <h3>Ensure you have the following installed:</h3>
   <ul>
     <li>Node.js(v14 or higher)</li>
     <li>npm (Node Package Manager)</li>
   </ul>
  
 
-<h4>Steps to Run on your local machine</h4>
+<h3>Steps to Run on your local machine</h3>
 
  1. Clone  the repository:
  `git clone https://github.com/OpaogunProsper/fe-nc-news.git`
@@ -46,8 +54,8 @@ Nc News</a>
  5. Open your browser and go to `http://localhost:5173`
 
 
-<h4>Contributing </h4>
-<h5>To contribute:</h5>
+<h2>Contributing </h2>
+<h4>To contribute:</h4>
 <ol>
 <li>Fork the project</li> 
 <li>Create your feature branch: git checkout -b feature</li>
