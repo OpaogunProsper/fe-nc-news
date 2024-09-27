@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { postComment } from "../../api";
-import { Button, Textarea } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Button, Textarea } from "@chakra-ui/react";
 function CommentForm({ article_id, setComments }) {
   const { user } = useContext(UserContext);
   const [userInfo] = user;
   const [newComment, setNewComment] = useState("");
   const [isPosting, setIsPosting] = useState(false);
+  const [error, setError] = useState("");
 
   function handleChange(event) {
     setNewComment(event.target.value);
@@ -16,10 +17,11 @@ function CommentForm({ article_id, setComments }) {
     event.preventDefault();
 
     if (!newComment) {
+      setError("Please write a comment before posting.");
       return;
     }
     setIsPosting(true);
-
+    setError("");
     const comment = {
       username: userInfo.username,
       body: newComment,
@@ -30,6 +32,7 @@ function CommentForm({ article_id, setComments }) {
         setNewComment("");
       })
       .catch((err) => {
+        setError("Failed to post comment. Please try again later.");
         console.log(err);
       })
       .finally(() => {
@@ -39,6 +42,14 @@ function CommentForm({ article_id, setComments }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && (
+        <Box mb={4}>
+          <Alert status="error" borderRadius={"md"}>
+            <AlertIcon />
+            {error}
+          </Alert>
+        </Box>
+      )}
       <Textarea
         value={newComment}
         onChange={handleChange}
