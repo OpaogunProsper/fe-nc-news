@@ -4,6 +4,7 @@ import SingleArticle from "./components/SingleArticle";
 import "../src/App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Articles />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </>

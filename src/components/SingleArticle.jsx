@@ -3,20 +3,49 @@ import { getArticleById } from "../../api";
 import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
 import Votes from "./Votes";
-import { Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Grid,
+  GridItem,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import Loading from "./Loading";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   useEffect(() => {
     setIsLoading(false);
-    getArticleById(article_id).then((article) => {
-      setArticle(article);
-      setIsLoading(false);
-    });
+    getArticleById(article_id)
+      .then((article) => {
+        setArticle(article);
+        setError("");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          setError("Article not found");
+        } else {
+          setError("An unexpected error occured");
+        }
+      });
   }, [article_id]);
+  if (error) {
+    return (
+      <Box mt={5} mx="auto" maxW="600px">
+        <Alert status="error" variant="left-accent" borderRadius="md">
+          <AlertIcon />
+          {error}
+        </Alert>
+      </Box>
+    );
+  }
 
   if (isLoading) {
     return <Loading />;

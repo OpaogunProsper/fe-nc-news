@@ -1,4 +1,14 @@
-import { Box, Text, Flex, Button, HStack, Menu, MenuList, MenuItem, MenuButton } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Flex,
+  Button,
+  HStack,
+  Menu,
+  MenuList,
+  MenuItem,
+  MenuButton,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -24,25 +34,6 @@ function Navbar() {
                 Home
               </Button>
             </Link>
-          </Box>
-          <Box>
-            <Menu>
-              <MenuButton
-                as={Button}
-                variant="whiteAlpha"
-                color="white"
-                className="ml-6"
-              >
-                Topics
-              </MenuButton>
-              <MenuList>
-                <MenuItem as={Link} to="/articles/football">
-                  Football
-                </MenuItem>
-                <MenuItem as={Link} to="/articles/coding">Coding</MenuItem>
-                <MenuItem as={Link} to="/articles/cooking">Cooking</MenuItem>
-              </MenuList>
-            </Menu>
           </Box>
           <Box>
             <Button
