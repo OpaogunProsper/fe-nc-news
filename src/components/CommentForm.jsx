@@ -4,7 +4,7 @@ import { postComment } from "../../api";
 import { Alert, AlertIcon, Box, Button, Textarea } from "@chakra-ui/react";
 function CommentForm({ article_id, setComments }) {
   const { user } = useContext(UserContext);
-  const [userInfo] = user;
+  const userInfo = user;
   const [newComment, setNewComment] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState("");
@@ -38,6 +38,17 @@ function CommentForm({ article_id, setComments }) {
       .finally(() => {
         setIsPosting(false);
       });
+  }
+
+  if(!userInfo){
+    return(
+      <Box mb={4}>
+        <Alert status="warning" borderRadius={"md"}>
+          <AlertIcon />
+            Sign in to post a comment.
+        </Alert>
+      </Box>
+    )
   }
 
   return (
