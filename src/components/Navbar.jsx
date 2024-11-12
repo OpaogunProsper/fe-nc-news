@@ -4,14 +4,22 @@ import {
   Flex,
   Button,
   HStack,
-  Menu,
-  MenuList,
-  MenuItem,
-  MenuButton,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/User";
 
 function Navbar() {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    if (!user) {
+      navigate("/signin");
+    } else{
+      navigate("/profile")
+    }
+  };
   return (
     <Box
       as="header"
@@ -41,8 +49,9 @@ function Navbar() {
               color="white"
               bg="red.700"
               _hover={{ bg: "red.800" }}
+              onClick={handleSignIn}
             >
-              Account
+              {user ? "Profile" : "Sign In"}
             </Button>
           </Box>
         </HStack>
