@@ -15,6 +15,7 @@
 <li> News Categories: Browse new articles by category (e.g. Coding, Football, Cooking) - Coming Soon! </li>
 <li> Posting Comments: Express yourself by posting comments on your preferred article </li>
  <li>Categorize and Filter Articles: Filter articles based on the date, time created,  votes and comments</li>
+ <li>Sign In & Sign Out: Sign in with a username and name, these are the available names and usernames respectively: tickle122|Tom Tickle, grumpy19|Paul Grump, happyamy2016|Amy Happy, cooljmessy|Paul Messy, weegembump|Gemma Bump, jessjelly|Jess Jelly.</li>
 </ul>
 
 <h2>Back-End Repo</h2>
