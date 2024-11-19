@@ -1,15 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/User";
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import newsImage from '../assets/nc-diagram.png'
+import newsImage from "../assets/nc-diagram.png";
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const { setUser } = useContext(UserContext);
-  const navigate = useNavigate()
-  
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Checking if there's a saved user in  the localStorage
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser)); // Reuse the users data
+      navigate("/"); 
+    }
+  }, [setUser, navigate]);
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
@@ -17,7 +37,10 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     setError("");
-   
+    if (!username || !name) {
+      setError("Both fields are required.");
+      return;
+    }
     try {
       const response = await fetch(
         "https://nc-news-676h.onrender.com/api/users"
@@ -41,7 +64,12 @@ const SignIn = () => {
 
       if (user) {
         setUser(user);
-        navigate("/")
+        if (rememberMe) {
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          sessionStorage.setItem("user", JSON.stringify(user));
+        }
+        navigate("/");
       } else {
         setError("Invalid username or password");
       }
@@ -56,6 +84,7 @@ const SignIn = () => {
       minHeight="100vh"
       justifyContent="center"
       alignItems="center"
+      direction={{ base: "column", md: "row" }}
       className="bg-gray-100"
     >
       {/* Left side */}
@@ -96,7 +125,7 @@ const SignIn = () => {
               id="username"
               type="text"
               marginBottom={4}
-              placeholder="Enter your username"
+              placeholder="tickle122"
               value={username}
               onChange={handleUsernameChange}
               className="border border-gray-300 rounded-lg p-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -114,7 +143,7 @@ const SignIn = () => {
             <Input
               id="name"
               type="text"
-              placeholder="Enter your name"
+              placeholder="Tom Tickle"
               value={name}
               marginBottom={4}
               onChange={handleNameChange}
@@ -122,7 +151,15 @@ const SignIn = () => {
             />
             {error && <FormErrorMessage>{error}</FormErrorMessage>}
           </FormControl>
-
+          <FormControl>
+            <Checkbox
+            paddingBottom={4}
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+            >
+              Remember Me
+            </Checkbox>
+          </FormControl>
           <Button
             type="submit"
             colorScheme="red"

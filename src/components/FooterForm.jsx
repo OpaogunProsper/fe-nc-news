@@ -15,7 +15,7 @@ const FooterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <VStack spacing={4} align="flex-start">
+      <VStack spacing={4} align="stretch" width={"100%"} maxWidth={"500px"} mx={"auto"}>
         <FormControl>
           <FormLabel fontWeight={"bold"} fontSize={"medium"} color="white">
             Email address
@@ -24,8 +24,9 @@ const FooterForm = () => {
             placeholder="Enter your email address"
             variant="filled"
             htmlSize={70}
-            width="auto"
+            width="100%"
             type="email"
+            size={"lg"}
           />
         </FormControl>
         <Button
@@ -34,6 +35,8 @@ const FooterForm = () => {
           bg={"red.700"}
           _hover={{ bg: "red.800" }}
           type="submit"
+          width={"100%"}
+          size={"lg"}
         >
           Subscribe
         </Button>

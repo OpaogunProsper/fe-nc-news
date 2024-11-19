@@ -9,6 +9,11 @@ import {
   Button,
   Heading,
   HStack,
+  useBreakpointValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import Loading from "./Loading";
 import moment from "moment";
@@ -30,6 +35,10 @@ function Articles() {
         console.log(err, "error line 20 articles file");
       });
   }, [sortBy, order]);
+  const breakpoint = useBreakpointValue({
+    base: "mobile",
+    md: "desktop",
+  });
   if (isLoading) {
     return <Loading />;
   }
@@ -38,36 +47,62 @@ function Articles() {
       <NewsSlide articles={articles} />
 
       <Box paddingBottom={4} borderRadius="md" className="shadow-lg">
-        <HStack mb={4} justify={"center"}>
-          <Button
-            variant={sortBy === "created_at" ? "solid" : "outline"}
-            colorScheme="red"
-            onClick={() => setSortBy("created_at")}
-          >
-            Sort by Date
-          </Button>
-          <Button
-            variant={sortBy === "comment_count" ? "solid" : "outline"}
-            colorScheme="red"
-            onClick={() => setSortBy("comment_count")}
-          >
-            Sort by Comments
-          </Button>
-          <Button
-            variant={sortBy === "votes" ? "solid" : "outline"}
-            colorScheme="red"
-            onClick={() => setSortBy("votes")}
-          >
-            Sort by Votes
-          </Button>
-          <Button
-            variant="outline"
-            colorScheme="red"
-            onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
-          >
-            Toggle Order ({order === "asc" ? "Descending" : "Ascending"})
-          </Button>
-        </HStack>
+        {breakpoint === "mobile" ? (
+          <Box display="flex" justifyContent={"center"} width={"100%"}>
+          <Menu>
+            <MenuButton as={Button} colorScheme="red" variant="outline">
+              Sort Options
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={() => setSortBy("created_at")}>
+                Sort by Date
+              </MenuItem>
+              <MenuItem onClick={() => setSortBy("comment_count")}>
+                Sort by Comments
+              </MenuItem>
+              <MenuItem onClick={() => setSortBy("votes")}>
+                Sort by Votes
+              </MenuItem>
+              <MenuItem
+                onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+              >
+                Toggle Order ({order === "asc" ? "Descending" : "Ascending"})
+              </MenuItem>
+            </MenuList>
+          </Menu>
+          </Box>
+        ) : (
+          <HStack mb={4} justify={"center"} width={"100%"}>
+            <Button
+              variant={sortBy === "created_at" ? "solid" : "outline"}
+              colorScheme="red"
+              onClick={() => setSortBy("created_at")}
+            >
+              Sort by Date
+            </Button>
+            <Button
+              variant={sortBy === "comment_count" ? "solid" : "outline"}
+              colorScheme="red"
+              onClick={() => setSortBy("comment_count")}
+            >
+              Sort by Comments
+            </Button>
+            <Button
+              variant={sortBy === "votes" ? "solid" : "outline"}
+              colorScheme="red"
+              onClick={() => setSortBy("votes")}
+            >
+              Sort by Votes
+            </Button>
+            <Button
+              variant="outline"
+              colorScheme="red"
+              onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+            >
+              Toggle Order ({order === "asc" ? "Descending" : "Ascending"})
+            </Button>
+          </HStack>
+        )}
       </Box>
 
       <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={10}>

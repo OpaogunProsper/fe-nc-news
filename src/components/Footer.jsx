@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, HStack, Text, VStack, Link, IconButton } from "@chakra-ui/react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub, FaUserCircle } from "react-icons/fa";
+import {FaLinkedin, FaGithub, FaUserCircle } from "react-icons/fa";
 import FooterForm from "./FooterForm";
 
 const Footer = () => {
@@ -10,16 +10,26 @@ const Footer = () => {
       bgGradient="linear(to-l, #454545, #000000)"
       color="gray.200"
       marginTop="50px"
+      width={"full"}
       py={6}
       px={{ base: 4, md: 8 }}
     >
-      <VStack spacing={4} align="stretch">
-        <Text fontSize="l" fontWeight="bold" color="white">
+      <VStack
+        textAlign={{ base: "center", md: "left" }}
+         spacing={4}
+        align="stretch"
+      >
+        <Text
+          fontSize={{ base: "lg", md: "xl" }}
+          fontWeight="bold"
+          color="white"
+          textAlign={"center"}
+        >
           Be the first to read about our Newsletter
         </Text>
         <FooterForm />
 
-        <HStack spacing={4} justify="center" pt={4}>
+        <HStack spacing={6} justify="center" pt={4}>
           <IconButton
             as="a"
             href="https://linkedin.com/in/prosperopaogun"
