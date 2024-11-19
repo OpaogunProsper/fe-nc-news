@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateArticleVotes } from "../../api";
-import { HStack, Icon, IconButton, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  HStack,
+  Icon,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown,
   faThumbsUp,
   faVoteYea,
 } from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "../contexts/User";
 
 function Votes({ article }) {
+  const { user } = useContext(UserContext);
+  const userInfo = user;
   const [votesCount, setVotesCount] = useState(0);
   const { article_id } = useParams();
   const [error, setError] = useState("");
@@ -52,14 +63,22 @@ function Votes({ article }) {
     return <p>{error}</p>;
   }
 
+  if (!userInfo) {
+    return (
+      <Box mb={4}>
+        <Alert status="warning" borderRadius={"md"}>
+          <AlertIcon />
+          Sign in to vote.
+        </Alert>
+      </Box>
+    );
+  }
   return (
     <div>
       <HStack>
         <FontAwesomeIcon icon={faVoteYea} color="black" />
         <Text color={"black"}>
-          {
-          isNaN(article.votes + votesCount) ? "0" : article.votes + votesCount
-          }
+          {isNaN(article.votes + votesCount) ? "0" : article.votes + votesCount}
         </Text>
       </HStack>
       <HStack mt={12} spacing={5}>
